@@ -1,0 +1,24 @@
+#Set Working directory by, setwd("/Users/ehizojiealli/Documents/practice-r/Line graph")
+
+library(tidyverse)
+library(ggplot2)
+
+df <- read_csv("/Users/ehizojiealli/Documents/practice-r/Line graph/iris.csv")
+
+#Organized data by non-numerical data of Species present within Spreadsheet
+#The non-numerical values by which the data is grouped can be referred to as
+#The categorical variables
+df_species <- group_by(df, Species)
+head(df_species)
+
+#Piping df_species to ggplot action 'aes' enabling aesthetic mapping.
+df_species %>%
+  ggplot(aes(Species, Petal.Length, colors("#00f")))+
+  geom_col()+
+  geom_smooth()+
+  geom_abline()+
+  xlab("Species")+
+  ylab("Petal Length")
+  
+
+
